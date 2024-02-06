@@ -2,7 +2,6 @@
 .terraform.lock.hcl
 .DS_Store
 global_ec2_access_key.pem
-provider.tf
 
 *.zip
 .decrypted~.*
