@@ -7,7 +7,7 @@ resource "aws_instance" "web-server" {
   vpc_security_group_ids      = [aws_security_group.allow_web.id]
   associate_public_ip_address = true
 
-  user_data = data.cloudinit_config.execute-scripts.rendered  
+  user_data = data.cloudinit_config.execute-scripts.rendered
   key_name  = "ec2_access_key"
 
   tags = {
@@ -17,16 +17,16 @@ resource "aws_instance" "web-server" {
 
 resource "aws_ebs_volume" "ebs-volume-1" {
   availability_zone = "eu-west-1a"
-  size              = 20
+  size              = 8
   type              = "gp2"
 
   tags = {
-    Name = "extra volume data"
+    Name = "extra volume data 1"
   }
 }
 
 resource "aws_volume_attachment" "ebs-volume-1-attachment" {
-  device_name                    = "/dev/xvdh"
+  device_name                    = var.VOL_1_DEVICE_NAME
   volume_id                      = aws_ebs_volume.ebs-volume-1.id
   instance_id                    = aws_instance.web-server.id
   stop_instance_before_detaching = true

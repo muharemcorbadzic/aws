@@ -10,9 +10,11 @@ data "cloudinit_config" "execute-scripts" {
   }
 
   part {
-    filename     = "mount-volume.sh"
+    filename     = "volume.sh"
     content_type = "text/x-shellscript"
 
-    content = file("${path.module}/scripts/mount-volume.sh")
+    content = templatefile("${path.module}/scripts/volume.sh", {
+      DEVICE = var.VOL_1_DEVICE_NAME
+    })
   }
 }

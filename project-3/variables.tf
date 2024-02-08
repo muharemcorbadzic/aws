@@ -28,3 +28,7 @@ variable "igw_name" {
   type        = string
   default     = "MyTestIGW"
 }
+
+variable "VOL_1_DEVICE_NAME" {
+  default = "/dev/xvdh"
+}
